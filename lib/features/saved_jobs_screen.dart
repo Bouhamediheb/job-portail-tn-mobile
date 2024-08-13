@@ -9,6 +9,7 @@ import 'package:job_search_app/features/full_page_job.dart';
 import 'package:job_search_app/modals/data/Job.dart';
 import 'package:job_search_app/themes/color_styles.dart';
 import 'package:job_search_app/themes/font_styles.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SavedJobsScreen extends StatefulWidget {
   SavedJobsScreen({super.key});
@@ -152,20 +153,28 @@ Text(
   }
 
   Future<List<Job>> _fetchAppliedJobs() async {
-    final userId = 3; // Replace with dynamic user ID if necessary
-    final response = await http.get(Uri.parse('http://localhost:8000/api/postulation/user/$userId'));
+  // Get the user ID from SharedPreferences
+  final prefs = await SharedPreferences.getInstance();
+  final userId = prefs.getInt('userId') ?? 0; // Default to 0 if not found
 
-    if (response.statusCode == 200) {
-      final List<dynamic> data = json.decode(response.body) as List<dynamic>;
-      final jobs = data.map((item) {
-        final jobData = item['offre'] as Map<String, dynamic>;
-        return Job.fromJson(jobData);
-      }).toList();
-      return jobs;
-    } else {
-      throw Exception('Failed to load applied jobs');
-    }
+  if (userId == 0) {
+    throw Exception('User ID not found');
   }
+
+  final response = await http.get(Uri.parse('http://localhost:8000/api/postulation/user/$userId'));
+
+  if (response.statusCode == 200) {
+    final List<dynamic> data = json.decode(response.body) as List<dynamic>;
+    final jobs = data.map((item) {
+      final jobData = item['offre'] as Map<String, dynamic>;
+      print(jobData);
+      return Job.fromJson(jobData);
+    }).toList();
+    return jobs;
+  } else {
+    throw Exception('Failed to load applied jobs');
+  }
+}
 
 
 

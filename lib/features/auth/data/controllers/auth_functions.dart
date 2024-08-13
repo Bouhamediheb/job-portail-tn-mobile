@@ -149,7 +149,7 @@ class AuthFunctions {
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization':
-              'Bearer YOUR_TOKEN_HERE', // Replace with your token management logic
+              'Bearer ${await SharedPreferences.getInstance().then((value) => value.getString('token'))}',
         },
       );
 

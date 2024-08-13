@@ -1,6 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   final String baseUrl = 'http://localhost:8000/api';
@@ -34,23 +38,32 @@ class AuthService {
 
 
 
-  Future<Map<String, dynamic>?> login({
+
+Future<Map<String, dynamic>?> login({
   required String email,
   required String password,
 }) async {
   final response = await http.post(
-    Uri.parse('$baseUrl/login'),
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
-    body: jsonEncode(<String, String>{
-      'email': email,
-      'password': password,
-    }),
-  );
+  Uri.parse('$baseUrl/login'),
+  headers: <String, String>{
+    'Content-Type': 'application/json; charset=UTF-8',
+  },
+  body: jsonEncode(<String, String>{
+    'email': email,
+    'password': password,
+  }),
+).timeout(const Duration(seconds: 10), onTimeout: () {
+  throw TimeoutException('The connection has timed out, Please try again!');
+});
+
 
   if (response.statusCode == 200) {
     final responseBody = jsonDecode(response.body);
+
+    // Save the user ID in SharedPreferences
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('userId', responseBody['user']['id'] as int);
+
     return {
       'status': responseBody['status'],
       'message': responseBody['message'],
@@ -65,6 +78,7 @@ class AuthService {
     };
   }
 }
+
 
 
   Future<void> resetPassword({required String email}) async {
