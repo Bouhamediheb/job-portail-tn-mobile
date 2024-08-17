@@ -2,8 +2,10 @@ class NamedRoutes {
   NamedRoutes._();
 
   static const String splashScreen = '/splashScreen';
-  static const String logIn = '/logIn';
-  static const String registerScreen = '/registerScreen';
+  static const String LogInSeeker = '/logInSeeker';
+  static const String logInRecruiter = '/logInRecruiter';
+  static const String registerScreenSeeker = '/registerScreenSeeker';
+  static const String registerScreenRecruter = '/registerScreenRecruter';
   static const String resetPassword = '/resetPassword';
   static const String forgotPassword = '/forgotPassword';
   static const String successScreen = '/successScreen';

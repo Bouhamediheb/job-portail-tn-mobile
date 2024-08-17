@@ -10,10 +10,12 @@ class WelcomeText extends StatelessWidget {
     super.key,
     required this.welcomePath,
     required this.welcomeText,
+    required this.smallText,
   });
 
   final String welcomeText;
   final String welcomePath;
+  final String smallText;
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +47,8 @@ class WelcomeText extends StatelessWidget {
             ),
           ],
         ),
-        const Text(
-          StaticText.applyToJobs,
+         Text(
+            smallText,
           style: FontStyles.lightStyle,
         ),
       ],

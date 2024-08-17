@@ -136,24 +136,58 @@ class _FullPageJobState extends State<FullPageJob> {
   }
 
   void showSuccessModal(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text("Application Submitted"),
-          content: const Text("You have successfully applied for the job."),
-          actions: [
-            TextButton(
-              child: const Text("OK"),
+     showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        backgroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        title: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.check_circle,
+              color: Colors.green,
+              size: 60,
+            ),
+            SizedBox(height: 10),
+            Text(
+              "Candidature retenue !",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+            ),
+          ],
+        ),
+        content: Text(
+          "Votre candidature a été envoyée \n avec succès vers la société.",
+          style: TextStyle(fontSize: 16),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
+              child: Text("Fermer"),
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white, backgroundColor: const Color.fromARGB(255, 43, 57, 82),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
             ),
-          ],
-        );
-      },
-    );
-  }
+          ),
+        ],
+      );
+    },
+  );
+}
+
 
   void showFailureModal(BuildContext context, String message) {
     showDialog(
@@ -392,7 +426,7 @@ class _FullPageJobState extends State<FullPageJob> {
                     ),
                     child: Center(
                       child: Text(
-                        _hasApplied ? 'Already Applied' : 'Apply Now',
+                        _hasApplied ? 'Déja postulé' : 'Postuler !',
                         style: TextStyle(
                           fontSize: scaleWidth(18, context),
                           fontWeight: FontWeight.w500,

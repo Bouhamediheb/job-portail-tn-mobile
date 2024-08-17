@@ -14,7 +14,7 @@ class Job {
   final int maxSalary;
   final int? hourlyWage;
   final String? internshipMotivation;
-  final String? internshipDuration;
+  final int? internshipDuration;
   final int yearsOfExperience;
   final String city;
   final String country;
@@ -53,33 +53,32 @@ class Job {
     required this.updatedAt,
     this.companyProfile, // Allow null
   });
-
-  factory Job.fromJson(Map<String, dynamic> json) {
-    return Job(
-      id: json['id'] as int,
-      title: json['title'] as String,
-      type: json['type'] as String,
-      employmentType: json['employmentType'] as int,
-      workplace: json['workplace'] as int,
-      description: json['description'] as String,
-      domain: json['domain'] as String,
-      hidden: json['hidden'] as int,
-      featured: json['featured'] as int,
-      minSalary: json['minSalary'] as int,
-      maxSalary: json['maxSalary'] as int,
-      hourlyWage: json['hourlyWage'] != null ? json['hourlyWage'] as int : null,
-      internshipMotivation: json['internshipMotivation'] != null ? json['internshipMotivation'] as String : null,
-      internshipDuration: json['internshipDuration'] != null ? json['internshipDuration'] as String : null,
-      yearsOfExperience: json['yearsOfExperience'] as int,
-      city: json['city'] as String,
-      country: json['country'] as String,
-      skills: json['skills'] as String,
-      address: json['address'] as String,
-      file: json['file'] as String,
-      societe_id: json['societe_id'] as int,
-      createdAt: json['created_at'] as String,
-      updatedAt: json['updated_at'] as String,
-      companyProfile: json['companyProfile'] != null ? json['companyProfile'] as Map<String, dynamic> : null, // Allow null
-    );
-  }
+factory Job.fromJson(Map<String, dynamic> json) {
+  return Job(
+    id: json['id'] as int? ?? 0,
+    title: json['title'] as String? ?? '',
+    type: json['type'] as String? ?? '',
+    employmentType: json['employmentType'] as int? ?? 0,
+    workplace: json['workplace'] as int? ?? 0,
+    description: json['description'] as String? ?? '',
+    domain: json['domain'] as String? ?? '',
+    hidden: json['hidden'] as int? ?? 0,
+    featured: json['featured'] as int? ?? 0,
+    minSalary: json['minSalary'] as int? ?? 0,
+    maxSalary: json['maxSalary'] as int? ?? 0,
+    hourlyWage: json['hourlyWage'] as int?, // Can be null
+    internshipMotivation: json['internshipMotivation'] as String?, // Can be null
+    internshipDuration: json['internshipDuration'] as int?, // Can be null
+    yearsOfExperience: json['yearsOfExperience'] as int? ?? 0,
+    city: json['city'] as String? ?? '',
+    country: json['country'] as String? ?? '',
+    skills: json['skills'] as String? ?? '',
+    address: json['address'] as String? ?? '',
+    file: json['file'] as String? ?? '',
+    societe_id: json['societe_id'] as int? ?? 0,
+    createdAt: json['created_at'] as String? ?? '',
+    updatedAt: json['updated_at'] as String? ?? '',
+    companyProfile: json['companyProfile'] as Map<String, dynamic>?, // Can be null
+  );
+}
 }

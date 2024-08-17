@@ -116,7 +116,7 @@ class ContinueWithOtherAccounts extends StatelessWidget {
                 isLogin
                     ? Navigator.pushNamed(
                         context,
-                        NamedRoutes.registerScreen,
+                        NamedRoutes.registerScreenRecruter,
                       )
                     : Navigator.pop(context);
               },

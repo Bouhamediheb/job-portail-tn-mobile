@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:job_search_app/constants/dimensions.dart';
 import 'package:job_search_app/constants/named_routes.dart';
 import 'package:job_search_app/controllers/data_controller.dart';
-import 'package:job_search_app/features/full_page_job.dart';
+import 'package:job_search_app/features/auth/presentation/screens/full_page_job.dart';
 import 'package:job_search_app/modals/data/Job.dart';
 import 'package:job_search_app/themes/color_styles.dart';
 import 'package:job_search_app/themes/font_styles.dart';
@@ -67,7 +67,8 @@ class _SavedJobsScreenState extends State<SavedJobsScreen> {
             itemBuilder: (context, index) {
               final job = jobs[index];
               final companyName = companyNames[job.societe_id] ?? 'Unknown';
-              final companyLogo = companyLogos[job.societe_id] ?? 'https://via.placeholder.com/150'; // Placeholder image URL
+              final companyLogo = companyLogos[job.societe_id] ??
+                  'https://via.placeholder.com/150'; // Placeholder image URL
 
               return GestureDetector(
                 onTap: () {
@@ -81,8 +82,11 @@ class _SavedJobsScreenState extends State<SavedJobsScreen> {
                   child: Container(
                     padding: EdgeInsets.all(scaleWidth(12, context)),
                     decoration: BoxDecoration(
-                      color: index % 2 == 0 ? ColorStyles.c5386E4 : const Color(0xFF3A5C99),
-                      borderRadius: BorderRadius.circular(scaleRadius(8, context)),
+                      color: index % 2 == 0
+                          ? ColorStyles.c5386E4
+                          : const Color(0xFF3A5C99),
+                      borderRadius:
+                          BorderRadius.circular(scaleRadius(8, context)),
                     ),
                     child: Row(
                       children: [
@@ -90,7 +94,8 @@ class _SavedJobsScreenState extends State<SavedJobsScreen> {
                           //rounded white backgreound
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.circular(scaleWidth(30, context)),
+                            borderRadius:
+                                BorderRadius.circular(scaleWidth(30, context)),
                           ),
                           child: Image.network(
                             'http://localhost:8000/api/societe/logo/${job.societe_id}',
@@ -128,15 +133,15 @@ class _SavedJobsScreenState extends State<SavedJobsScreen> {
                                   color: Colors.white,
                                 ),
                               ),
-                                                            SizedBox(height: scaleHeight(2, context)),
-
-Text(
-  'Postulé le : ' + job.createdAt.substring(0, 10),
-  style: TextStyle(
+                              SizedBox(height: scaleHeight(2, context)),
+                              Text(
+                                'Postulé le : ' +
+                                    job.createdAt.substring(0, 10),
+                                style: TextStyle(
                                   fontSize: 12,
                                   color: Colors.white,
                                 ),
-)
+                              )
                             ],
                           ),
                         ),
@@ -153,33 +158,32 @@ Text(
   }
 
   Future<List<Job>> _fetchAppliedJobs() async {
-  // Get the user ID from SharedPreferences
-  final prefs = await SharedPreferences.getInstance();
-  final userId = prefs.getInt('userId') ?? 0; // Default to 0 if not found
+    // Get the user ID from SharedPreferences
+    final prefs = await SharedPreferences.getInstance();
+    final userId = prefs.getInt('userId') ?? 0; // Default to 0 if not found
 
-  if (userId == 0) {
-    throw Exception('User ID not found');
+    if (userId == 0) {
+      throw Exception('User ID not found');
+    }
+
+    final response = await http
+        .get(Uri.parse('http://localhost:8000/api/postulation/user/$userId'));
+
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body) as List<dynamic>;
+      final jobs = data.map((item) {
+        final jobData = item['offre'] as Map<String, dynamic>;
+        print(jobData);
+        return Job.fromJson(jobData);
+      }).toList();
+      return jobs;
+    } else {
+      throw Exception('Failed to load applied jobs');
+    }
   }
-
-  final response = await http.get(Uri.parse('http://localhost:8000/api/postulation/user/$userId'));
-
-  if (response.statusCode == 200) {
-    final List<dynamic> data = json.decode(response.body) as List<dynamic>;
-    final jobs = data.map((item) {
-      final jobData = item['offre'] as Map<String, dynamic>;
-      print(jobData);
-      return Job.fromJson(jobData);
-    }).toList();
-    return jobs;
-  } else {
-    throw Exception('Failed to load applied jobs');
-  }
-}
-
-
-
 
   void _navigateToJobDetails(Job job) {
-    Get.to(() => FullPageJob(), arguments: job); // Pass the job details to FullPageJob
+    Get.to(() => FullPageJob(),
+        arguments: job); // Pass the job details to FullPageJob
   }
 }

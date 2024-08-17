@@ -26,6 +26,7 @@ Widget build(BuildContext context) {
       primaryColor: Color.fromARGB(255, 231, 233, 236),
       textTheme: GoogleFonts.montserratTextTheme(
         Theme.of(context).textTheme,
+        
       ),
     ),
     initialRoute: NamedRoutes.splashScreen,

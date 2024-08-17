@@ -37,6 +37,8 @@ class StaticText {
 
   static const String applyToJobs = "Connectez-vous. Postulez à des emplois !";
 
+  static const String lookForCandidats = "Connectez-vous. Recherchez des candidats !";
+
   static const String userNotFound = 'Utilisateur non trouvé';
 
   static const String email = 'Adresse Email';
@@ -63,6 +65,8 @@ class StaticText {
   static const String searchJobPosition = 'Rechercher un emploi ou un poste';
 
   static const String featuredJobs = 'Emplois en Vedette';
+
+  static const String browserJobsByDomain = 'Emplois par domaine';
 
   static const String seeAll = 'Voir tout';
 

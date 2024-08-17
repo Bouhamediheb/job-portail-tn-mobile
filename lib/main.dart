@@ -7,5 +7,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
  
 
-  runApp(const JobSearchApp());
+  runApp(JobSearchApp());
 }
+           

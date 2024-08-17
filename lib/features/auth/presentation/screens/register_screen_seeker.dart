@@ -11,14 +11,14 @@ import 'package:job_search_app/constants/dimensions.dart';
 import 'package:job_search_app/constants/strings.dart';
 import 'package:job_search_app/features/auth/data/controllers/validation.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+class RegisterScreenSeeker extends StatefulWidget {
+  const RegisterScreenSeeker({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<RegisterScreenSeeker> createState() => _RegisterScreenSeekerState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _RegisterScreenSeekerState extends State<RegisterScreenSeeker> {
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -58,6 +58,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             const WelcomeText(
               welcomePath: Assets.thumbsUpSvg,
               welcomeText: StaticText.registration,
+              smallText: "Hello"
             ),
             VerticalSpace(value: 32, ctx: context),
             Form(

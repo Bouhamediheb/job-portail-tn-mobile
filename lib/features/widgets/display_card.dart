@@ -16,6 +16,7 @@ class DisplayCard extends StatelessWidget {
     required this.role,
     required this.color,
     this.salary, // Salary is optional
+    required this.onSave, // Callback for the save icon
   });
 
   final String companyName;
@@ -24,6 +25,7 @@ class DisplayCard extends StatelessWidget {
   final String? salary; // Salary is now optional
   final String location;
   final Color color;
+  final VoidCallback onSave; // Callback for the save icon
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +54,7 @@ class DisplayCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: ColorStyles.pureWhite,
                   borderRadius: BorderRadius.circular(
-                    scaleRadius(12, context),
+                    scaleRadius(25, context),
                   ),
                 ),
                 padding: EdgeInsets.symmetric(
@@ -67,75 +69,68 @@ class DisplayCard extends StatelessWidget {
               ),
               SizedBox(width: scaleWidth(16, context)),
               // TITLE, COMPANY NAME, AND LOCATION
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    role,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: ColorStyles.pureWhite,
+              Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      role,
+                      overflow: TextOverflow.ellipsis, // Handle overflow
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: ColorStyles.pureWhite,
+                      ),
                     ),
-                  ),
-                  VerticalSpace(value: 3, ctx: context),
-                  Text(
-                    companyName,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: ColorStyles.pureWhite,
+                    VerticalSpace(value: 3, ctx: context),
+                    Text(
+                      companyName,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: ColorStyles.pureWhite,
+                      ),
                     ),
-                  ),
-                  VerticalSpace(value: 3, ctx: context),
-                  Text(
-                    location,
-                    style: const TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w500,
-                      color: ColorStyles.pureWhite,
+                    VerticalSpace(value: 3, ctx: context),
+                    Text(
+                      location,
+                      style: const TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                        color: ColorStyles.pureWhite,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              Spacer(),
               // BOOKMARK ICON
-              SvgPicture.asset(
-                Assets.bookmarkSvg,
+              GestureDetector(
+                onTap: onSave,
+                child: SvgPicture.asset(
+                  Assets.bookmarkSvg,
+                ),
               ),
             ],
           ),
-          VerticalSpace(value: 16, ctx: context),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Pill(StaticText.it),
-                SizedBox(
-                  width: 8,
-                ),
-                Pill(StaticText.fullTime),
-                SizedBox(
-                  width: 8,
-                ),
-                Pill(StaticText.junior),
-              ],
-            ),
-          ),
-          VerticalSpace(
-            value: 16,
-            ctx: context,
-          ),
-          if (salary != null)
-            Text(
-              salary!,
-              style: const TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w500,
-                color: ColorStyles.pureWhite,
+          VerticalSpace(value: 18, ctx: context),
+          SizedBox(
+            height: scaleHeight(32, context), // Set a fixed height here
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Pill(StaticText.it),
+                  SizedBox(width: 8),
+                  Pill(StaticText.fullTime),
+                  SizedBox(width: 8),
+                  Pill(StaticText.junior),
+                ],
               ),
             ),
+          ),
+         
+         
         ],
       ),
     );

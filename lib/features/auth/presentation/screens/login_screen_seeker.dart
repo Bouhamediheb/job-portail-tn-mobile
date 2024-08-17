@@ -13,14 +13,14 @@ import 'package:job_search_app/constants/dimensions.dart';
 import 'package:job_search_app/constants/strings.dart';
 import 'package:job_search_app/features/auth/data/controllers/validation.dart';
 
-class LogIn extends StatefulWidget {
-  const LogIn({super.key});
+class LogInSeeker extends StatefulWidget {
+  const LogInSeeker({super.key});
 
   @override
-  State<LogIn> createState() => _LogInState();
+  State<LogInSeeker> createState() => _LogInSeekerState();
 }
 
-class _LogInState extends State<LogIn> {
+class _LogInSeekerState extends State<LogInSeeker> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passWordController = TextEditingController();
   bool isErrorMail = false;
@@ -57,6 +57,7 @@ class _LogInState extends State<LogIn> {
                 const WelcomeText(
                   welcomePath: Assets.helloSvg,
                   welcomeText: StaticText.welcomeBack,
+                  smallText: StaticText.applyToJobs,
                 ),
                 VerticalSpace(value: 52, ctx: context),
                 Form(

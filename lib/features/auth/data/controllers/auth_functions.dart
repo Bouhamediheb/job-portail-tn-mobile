@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:job_search_app/constants/route_functions.dart';
+import 'package:job_search_app/features/auth/presentation/screens/login_screen_recruter.dart';
 import '../../../../constants/named_routes.dart';
 import '../../../../constants/strings.dart';
 import 'validation.dart';
@@ -33,7 +34,7 @@ class AuthFunctions {
   }
 
   // Use the provided AuthService for authentication
-  final response = await AuthService().login(
+  final response = await AuthService().loginUser(
     email: emailController.text,
     password: passWordController.text,
   );
@@ -92,7 +93,7 @@ class AuthFunctions {
     print('First Name: ${firstNameController.text}');
     print('Last Name: ${lastNameController.text}');
 
-    final String? message = await AuthService().registration(
+    final String? message = await AuthService().registrationUser(
       firstName: firstNameController.text,
       lastName: lastNameController.text,
       email: emailController.text,
@@ -102,7 +103,7 @@ class AuthFunctions {
     if (message != null && message == 'success') {
       firstNameController.text = lastNameController.text =
           emailController.text = passwordController.text = '';
-      AppRoute.offNamedUntil(NamedRoutes.logIn);
+      AppRoute.offNamedUntil(NamedRoutes.LogInSeeker);
     } else {
       if (message != null) {
         failureBar(message, context);
@@ -141,9 +142,51 @@ class AuthFunctions {
     }
   }
 
+  // REGISTER COMPANY
+static Future<void> registerCompany({
+  required TextEditingController nameController,
+  required TextEditingController emailController,
+  required TextEditingController passwordController,
+  required TextEditingController confirmPasswordController,
+  required GlobalKey<FormState> formKey,
+  required BuildContext context,
+}) async {
+  FocusManager.instance.primaryFocus?.unfocus();
+
+  if (formKey.currentState!.validate() == false ||
+      passwordController.text != confirmPasswordController.text) {
+    failureBar(ErrorText.passwordsNotMatch, context);
+    return;
+  }
+
+  print('Registering company');
+  print('Name: ${nameController.text}');
+  print('Email: ${emailController.text}');
+  print('Password: ${passwordController.text}');
+
+  final String? message = await AuthService().registerCompany(
+    name: nameController.text,
+    email: emailController.text,
+    password: passwordController.text,
+  );
+
+  if (message != null && message == 'success') {
+    nameController.text = emailController.text = passwordController.text = '';
+    AppRoute.offNamedUntil(NamedRoutes.logInRecruiter);
+  } else {
+    if (message != null) {
+      failureBar(message, context);
+    } else {
+      failureBar('An unexpected error occurred', context);
+    }
+  }
+}
+
+
   // LOGOUT USER
   static Future<void> signOutUser(BuildContext context) async {
     try {
+      
       final response = await http.post(
         Uri.parse('http://localhost:8000/api/logout'),
         headers: <String, String>{
@@ -154,7 +197,7 @@ class AuthFunctions {
       );
 
       if (response.statusCode == 200) {
-        AppRoute.offNamedUntil(NamedRoutes.logIn);
+        AppRoute.offNamedUntil(NamedRoutes.LogInSeeker);
       } else {
         final responseBody = jsonDecode(response.body);
         failureBar(

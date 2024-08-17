@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:job_search_app/features/saved_jobs_screen.dart';
-import 'package:job_search_app/features/widgets/job_details_card.dart';
+import 'package:job_search_app/features/auth/presentation/screens/applied_jobs_list.dart';
+import 'package:job_search_app/features/auth/presentation/screens/bookmarked_jobs_list.dart';
+import 'package:job_search_app/features/auth/presentation/screens/show_all_jobs.dart';
 
-import '../features/home/home_screen.dart';
+import '../features/auth/presentation/screens/home_screen.dart';
 import '../features/messages/messages_screen.dart';
 
 class Controller extends GetxController {
@@ -13,6 +14,7 @@ class Controller extends GetxController {
     const MessagesScreen(),
     SavedJobsScreen(),
     const JobDetailsCard(),
+    BookMarkedJobsScreen(),
   ];
 
   final RxInt _tabController = 0.obs;
