@@ -5,7 +5,6 @@ import 'package:job_search_app/constants/named_routes.dart';
 import 'package:job_search_app/themes/color_styles.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../constants/route_functions.dart';
-import '../features/auth/presentation/screens/login_screen_seeker.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -21,12 +20,17 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    // Automatically move to the next page after a delay
+    _startPageTransition();
+  }
+
+  void _startPageTransition() {
     Future.delayed(const Duration(seconds: 3), () {
-      _pageController.nextPage(
-        duration: const Duration(milliseconds: 800),
-        curve: Curves.easeInOut,
-      );
+      if (_currentPage < 2) {
+        _pageController.nextPage(
+          duration: const Duration(milliseconds: 800),
+          curve: Curves.easeInOut,
+        );
+      }
     });
   }
 
@@ -36,8 +40,29 @@ class _SplashScreenState extends State<SplashScreen> {
     super.dispose();
   }
 
-  Widget _buildPageContent(
-      {required String imagePath, required String text}) {
+void _checkLoginStatusAndNavigate(bool isRecruiter) async {
+  final prefs = await SharedPreferences.getInstance();
+  final String? userType = prefs.getString('type');
+  print("User type: $userType");
+
+  if (userType != null && isRecruiter) {
+    if (userType == 'recruiter') {
+      print("User is a recruiter");
+      AppRoute.offNamed(NamedRoutes.homeScreenRecruter);
+    } else {
+      AppRoute.offNamed(NamedRoutes.homeScreenSeeker);
+    }
+  } else {
+    if (isRecruiter) {
+      AppRoute.offNamed(NamedRoutes.registerScreenRecruter);
+    } else {
+      AppRoute.offNamed(NamedRoutes.registerScreenSeeker);
+    }
+  }
+}
+
+
+  Widget _buildPageContent({required String imagePath, required String text}) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -51,7 +76,6 @@ class _SplashScreenState extends State<SplashScreen> {
             height: scaleHeight(150, context),
             width: scaleWidth(150, context),
             color: Colors.white,
-           
           ),
         ),
         const SizedBox(height: 20),
@@ -73,33 +97,8 @@ class _SplashScreenState extends State<SplashScreen> {
       _currentPage = page;
     });
 
-    // Automatically move to the next page, if not the last page
     if (page < 2) {
-      Future.delayed(const Duration(seconds: 3), () {
-        if (_pageController.hasClients) {
-          _pageController.nextPage(
-            duration: const Duration(milliseconds: 800),
-            curve: Curves.easeInOut,
-          );
-        }
-      });
-    }
-  }
-
-  void _checkLoginStatusAndNavigate(bool isRecruiter) async {
-    final prefs = await SharedPreferences.getInstance();
-    final String? userData = prefs.getString('user');
-
-    if (userData != null) {
-      // Navigate to the main screen if user data exists
-      AppRoute.offNamed(NamedRoutes.mainScreen);
-    } else {
-      // Navigate to the appropriate login screen
-      if (isRecruiter) {
-        AppRoute.offNamed(NamedRoutes.logInRecruiter);
-      } else {
-        AppRoute.offNamed(NamedRoutes.LogInSeeker);
-      }
+      _startPageTransition();
     }
   }
 
@@ -130,7 +129,7 @@ class _SplashScreenState extends State<SplashScreen> {
             children: [
               _buildPageContent(
                 imagePath: "assets/images/job.png",
-                text: 'Bienvenue à \nJob Search App',
+                text: 'Bienvenue à PortailTN',
               ),
               _buildPageContent(
                 imagePath: "assets/images/job.png",
@@ -140,7 +139,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   _buildPageContent(
-                imagePath: "assets/images/job.png",
+                    imagePath: "assets/images/job.png",
                     text: 'Avant de commencer, vous êtes \n Recruteur ou \nchercheur d\'emploi ?',
                   ),
                   const SizedBox(height: 40),

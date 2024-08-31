@@ -40,6 +40,11 @@ class Assets {
   static const String editSquare = '$pathSvg/edit-square.svg';
   static const String profileImgSvg = '$pathSvg/Ellipse 782 (1).svg';
   static const String detailsContainer = '$pathSvg/Group 1.svg';
+  static const String city = '$pathSvg/city.svg';
+  static const String fax = '$pathSvg/fax.svg';
+  static const String website = '$pathSvg/website.svg';
+  static const String country = '$pathSvg/country.svg';
+  static const String telephone = '$pathSvg/telephone.svg';
 
   // IMAGES
   static const String logoImage = '$pathImg/logo.png';

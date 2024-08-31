@@ -19,12 +19,8 @@ class ContinueWithOtherAccounts extends StatelessWidget {
     final result = await AuthService().signInWithGoogle();
     if (result.user == null) {
       failureBar('User not found', context);
-    } else {
-      Navigator.pushNamed(
-        context,
-        NamedRoutes.homeScreen,
-      );
-    }
+    } 
+    
   }
 
   @override
@@ -62,7 +58,7 @@ class ContinueWithOtherAccounts extends StatelessWidget {
         ),
 
         SizedBox(
-          height: scaleHeight(40, context),
+          height: scaleHeight(35, context),
         ),
 
         // ACCOUNT ICONS
@@ -96,46 +92,7 @@ class ContinueWithOtherAccounts extends StatelessWidget {
           ],
         ),
 
-        SizedBox(
-          height: scaleHeight(32, context),
-        ),
-
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              isLogin ? 'Pas de compte?' : 'Déjà un compte?',
-              style: TextStyle(
-                color: Color.fromARGB(255, 101, 104, 116),
-                fontSize: scaleHeight(16, context),
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                isLogin
-                    ? Navigator.pushNamed(
-                        context,
-                        NamedRoutes.registerScreenRecruter,
-                      )
-                    : Navigator.pop(context);
-              },
-              child: Text(
-                isLogin ? 'S\'inscrire' : 'Se connecter',
-                style: TextStyle(
-                  fontSize: scaleHeight(14, context),
-                  fontFamily: FontStyles.fontFamily,
-                  fontWeight: FontWeight.w400,
-                  color: Color.fromARGB(255, 141, 149, 179),
-                ),
-              ),
-            ),
-          ],
-        ),
-
-        SizedBox(
-          height: scaleHeight(8, context),
-        ),
+        
       ],
     );
   }

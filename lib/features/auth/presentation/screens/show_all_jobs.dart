@@ -556,7 +556,7 @@ void _showFilterDialog(BuildContext context) {
                   fetchJobs(); // Apply filters and fetch jobs
                   Navigator.of(context).pop();
                 },
-                child: Text('Appliquer'),
+                child: const Text('Appliquer'),
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white, backgroundColor: const Color.fromARGB(255, 43, 57, 82),
                   shape: RoundedRectangleBorder(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:job_search_app/constants/named_routes.dart';
 import 'package:job_search_app/features/auth/data/controllers/auth_functions.dart';
 import 'package:job_search_app/features/auth/presentation/widgets/continue_with.dart';
 import 'package:job_search_app/features/auth/presentation/widgets/login_button.dart';
@@ -19,15 +20,14 @@ class RegisterScreenRecruter extends StatefulWidget {
 }
 
 class _RegisterScreenRecruterState extends State<RegisterScreenRecruter> {
-  final TextEditingController _firstNameController = TextEditingController();
-  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
   bool isErrorFirstName = false;
-  bool isErrorLastName = false;
   bool isErrorEmail = false;
   bool isErrorPassword = false;
   bool isErrorConfirmPassword = false;
@@ -46,11 +46,14 @@ class _RegisterScreenRecruterState extends State<RegisterScreenRecruter> {
         ),
         child: ListView(
           children: [
-            VerticalSpace(value: 63, ctx: context),
+            VerticalSpace(value: 23, ctx: context),
             // * SPLASH IMG
             Row(
               children: [
-                SvgPicture.asset(Assets.splashSvg),
+                Image.asset(
+                  "assets/images/job.png",
+                  scale: 6,
+                )
               ],
             ),
             VerticalSpace(value: 8, ctx: context),
@@ -58,8 +61,8 @@ class _RegisterScreenRecruterState extends State<RegisterScreenRecruter> {
             const WelcomeText(
               welcomePath: Assets.thumbsUpSvg,
               welcomeText: StaticText.registration,
-                            smallText: "Hello Recruter"
-
+              smallText:
+                  "Créez votre compte pour pour poster vos offres d'emplois et trouvez les meilleurs candidats",
             ),
             VerticalSpace(value: 32, ctx: context),
             Form(
@@ -68,23 +71,13 @@ class _RegisterScreenRecruterState extends State<RegisterScreenRecruter> {
               child: Column(
                 children: [
                   CustomTextField(
-                    hintText: 'Nom',
+                    hintText: 'Nom de la société', // Or just "Nom"
                     textIcon: Assets.profileSvg,
                     isPassword: false,
                     textType: TextInputType.name,
-                    controller: _firstNameController,
-                    isErrorfull: isErrorFirstName,
-                    inputType: InputType.name,
-                    formKey: _formKey,
-                  ),
-                  VerticalSpace(value: 16, ctx: context),
-                  CustomTextField(
-                    hintText: 'Prénom',
-                    textIcon: Assets.profileSvg,
-                    isPassword: false,
-                    textType: TextInputType.name,
-                    controller: _lastNameController,
-                    isErrorfull: isErrorLastName,
+                    controller: _nameController,
+                    isErrorfull:
+                        isErrorFirstName, // Reuse the existing error state
                     inputType: InputType.name,
                     formKey: _formKey,
                   ),
@@ -124,16 +117,14 @@ class _RegisterScreenRecruterState extends State<RegisterScreenRecruter> {
                   VerticalSpace(value: 32, ctx: context),
                   LoginButton(
                     loginText: StaticText.register,
-                    onTapButton: () => AuthFunctions.registerUser(
-                      firstNameController: _firstNameController,
-                      lastNameController: _lastNameController,
+                    onTapButton: () => AuthFunctions.registerCompany(
+                      nameController: _nameController,
                       emailController: _emailController,
                       passwordController: _passwordController,
                       confirmPasswordController: _confirmPasswordController,
                       formKey: _formKey,
                       context: context,
                     ),
-                    
                   ),
                 ],
               ),
@@ -144,6 +135,31 @@ class _RegisterScreenRecruterState extends State<RegisterScreenRecruter> {
             ),
             const ContinueWithOtherAccounts(
               isLogin: false,
+            ),
+            VerticalSpace(
+              value: 36,
+              ctx: context,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      NamedRoutes.logInRecruiter,
+                    );
+                  },
+                  child: Text(
+                    'Vous avez déjà un compte? Connectez-vous',
+                    style: TextStyle(
+                      fontSize: scaleWidth(12, context),
+                      fontWeight: FontWeight.w400,
+                      color: Color.fromARGB(255, 146, 150, 163),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

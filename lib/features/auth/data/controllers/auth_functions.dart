@@ -48,6 +48,8 @@ class AuthFunctions {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('token', token);
     await prefs.setString('user', jsonEncode(user));
+    await prefs.setInt('userId', response['user']['id'] as int);
+    print('User ID: ${response['user']['id']}');
     print('User logged in successfully');
     
 
@@ -132,7 +134,7 @@ class AuthFunctions {
       final response = await AuthService().verifyOtp(otp, realOtp);
 
       if (response == 'success') {
-        AppRoute.offNamedUntil(NamedRoutes.homeScreen);
+        AppRoute.offNamedUntil(NamedRoutes.homeScreenSeeker);
       } else {
         failureBar(ErrorText.enterCorrectOtp, context);
       }
@@ -182,6 +184,68 @@ static Future<void> registerCompany({
   }
 }
 
+// LOGIN COMPANY
+static Future<void> loginCompany({
+  required TextEditingController emailController,
+  required TextEditingController passWordController,
+  required GlobalKey<FormState> formKey,
+  required BuildContext context,
+}) async {
+  // Remove focus from keyboard
+  FocusManager.instance.primaryFocus?.unfocus();
+  print('Logging in company');
+  print('Email: ${emailController.text}');
+  print('Password: ${passWordController.text}');
+
+  // Validation of inputs
+  if (formKey.currentState!.validate() == false) {
+    return;
+  }
+
+  try {
+    final response = await http.post(
+      Uri.parse('http://localhost:8000/api/societe/login'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode({
+        'email': emailController.text,
+        'password': passWordController.text,
+      }),
+    );
+
+    final responseBody = jsonDecode(response.body);
+    print(responseBody);
+
+    if (response.statusCode == 200 && responseBody['status'] == true) {
+      final String token = responseBody['token'] as String;
+      final Map<String, dynamic> societe = responseBody['societe'] as Map<String, dynamic>;
+
+      // Save token and company data
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('token', token);
+      await prefs.setString('societeName', societe['name'] as String);
+      await prefs.setString('societe', jsonEncode(societe));
+      await prefs.setInt('companyId', responseBody['societe']['id'] as int);
+      await prefs.setString('token', responseBody['token'] as String);
+      await prefs.setString('type', 'recruiter');
+      print('Company ID: ${responseBody['societe']['id']}');
+      print('Token: ${responseBody['token']}');
+      print('Type: $prefs.getString("type")');
+      print('NAME' + prefs.getString('societeName').toString());
+      print('Company logged in successfully');
+
+      emailController.text = passWordController.text = '';
+      // Navigate to the main screen
+      AppRoute.offNamedUntil(NamedRoutes.homeScreenRecruter);
+    } else {
+      failureBar(responseBody['message'] as String, context);
+    }
+  } catch (e) {
+    failureBar('An unexpected error occurred', context);
+  }
+}
+
 
   // LOGOUT USER
   static Future<void> signOutUser(BuildContext context) async {
@@ -197,7 +261,7 @@ static Future<void> registerCompany({
       );
 
       if (response.statusCode == 200) {
-        AppRoute.offNamedUntil(NamedRoutes.LogInSeeker);
+        AppRoute.offNamedUntil(NamedRoutes.logInRecruiter);
       } else {
         final responseBody = jsonDecode(response.body);
         failureBar(
@@ -206,6 +270,12 @@ static Future<void> registerCompany({
     } catch (e) {
       failureBar('Logout failed', context);
     }
+  }
+
+  //clearSharedpref
+  static Future<void> clearSharedPref() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
   }
 
   // SENDING OTP
@@ -268,4 +338,11 @@ static Future<void> registerCompany({
     }
     return "";
   }
+
+  static Future<bool> checkIfAlreadyLoggedIn(BuildContext context) async {
+  final prefs = await SharedPreferences.getInstance();
+  final token = prefs.getString('token');
+  return token != null;
+}
+    
 }

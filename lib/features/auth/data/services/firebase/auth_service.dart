@@ -53,11 +53,17 @@ class AuthService {
 
     if (response.statusCode == 200) {
       final responseBody = jsonDecode(response.body);
+      print(responseBody);
 
       // Save the company ID and token in SharedPreferences
       final prefs = await SharedPreferences.getInstance();
       await prefs.setInt('companyId', responseBody['societe']['id'] as int);
       await prefs.setString('token', responseBody['token'] as String);
+      await prefs.setString('type', 'recruiter');
+      await prefs.setString('companyName', responseBody['societe']['name'] as String);
+      print('Company ID: ${responseBody['societe']['id']}');
+      print('Token: ${responseBody['token']}');
+      print('Type: $prefs.getString("type")');
 
       return {
         'status': responseBody['status'],
@@ -126,6 +132,7 @@ class AuthService {
       // Save the user ID in SharedPreferences
       final prefs = await SharedPreferences.getInstance();
       await prefs.setInt('userId', responseBody['user']['id'] as int);
+            await prefs.setString('type', 'user');
 
       return {
         'status': responseBody['status'],

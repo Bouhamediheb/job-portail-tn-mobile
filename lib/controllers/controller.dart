@@ -4,13 +4,13 @@ import 'package:job_search_app/features/auth/presentation/screens/applied_jobs_l
 import 'package:job_search_app/features/auth/presentation/screens/bookmarked_jobs_list.dart';
 import 'package:job_search_app/features/auth/presentation/screens/show_all_jobs.dart';
 
-import '../features/auth/presentation/screens/home_screen.dart';
+import '../features/auth/presentation/screens/home_screen_jobseeker.dart';
 import '../features/messages/messages_screen.dart';
 
 class Controller extends GetxController {
   final RxInt _currentIndex = 0.obs;
   final List<Widget> _tabs = [
-    const HomeScreen(),
+    const HomeScreenSeeker(),
     const MessagesScreen(),
     SavedJobsScreen(),
     const JobDetailsCard(),

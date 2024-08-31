@@ -28,6 +28,20 @@ class _LogInSeekerState extends State<LogInSeeker> {
   bool isErrorFull = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  //if already logged in sharedpref , redirect to home
+  @override
+void initState() {
+  super.initState();
+  WidgetsBinding.instance.addPostFrameCallback((_) async {
+    bool isLoggedIn = await AuthFunctions.checkIfAlreadyLoggedIn(context);
+    if (isLoggedIn) {
+      Navigator.pushReplacementNamed(context, NamedRoutes.homeScreenSeeker);
+    }
+  });
+}
+
+
+
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
@@ -48,9 +62,10 @@ class _LogInSeekerState extends State<LogInSeeker> {
                 VerticalSpace(value: 61, ctx: context),
                 Row(
                   children: [
-                    SvgPicture.asset(
-                      Assets.splashSvg,
-                    ),
+                    Image.asset(
+                      "assets/images/job.png",
+                      scale: 3,
+                    )
                   ],
                 ),
                 VerticalSpace(value: 8, ctx: context),

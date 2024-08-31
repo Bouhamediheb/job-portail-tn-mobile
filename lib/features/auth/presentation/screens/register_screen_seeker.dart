@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:job_search_app/constants/named_routes.dart';
 import 'package:job_search_app/features/auth/data/controllers/auth_functions.dart';
 import 'package:job_search_app/features/auth/presentation/widgets/continue_with.dart';
 import 'package:job_search_app/features/auth/presentation/widgets/login_button.dart';
@@ -46,19 +47,21 @@ class _RegisterScreenSeekerState extends State<RegisterScreenSeeker> {
         ),
         child: ListView(
           children: [
-            VerticalSpace(value: 63, ctx: context),
+            VerticalSpace(value: 23, ctx: context),
             // * SPLASH IMG
             Row(
               children: [
-                SvgPicture.asset(Assets.splashSvg),
-              ],
+Image.asset(
+                      "assets/images/job.png",
+                      scale: 5,
+                    )              ],
             ),
             VerticalSpace(value: 8, ctx: context),
             // * Welcome text
             const WelcomeText(
               welcomePath: Assets.thumbsUpSvg,
               welcomeText: StaticText.registration,
-              smallText: "Hello"
+              smallText: "Créez un compte pour postuler à des offres d'emploi",
             ),
             VerticalSpace(value: 32, ctx: context),
             Form(
@@ -138,11 +141,43 @@ class _RegisterScreenSeekerState extends State<RegisterScreenSeeker> {
               ),
             ),
             VerticalSpace(
-              value: 48,
+              value: 32,
               ctx: context,
             ),
             const ContinueWithOtherAccounts(
               isLogin: false,
+            ),
+            VerticalSpace(
+              value: 36,
+              ctx: context,
+            ),
+            //already have an account
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Vous avez déjà un compte ?',
+                  style: TextStyle(
+                    fontSize: scaleWidth(12, context),
+                    color: Color.fromARGB(255, 146, 150, 163),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      NamedRoutes.LogInSeeker,
+                    );
+                  },
+                  child: Text(
+                    'Se connecter',
+                    style: TextStyle(
+                      fontSize: scaleWidth(12, context),
+                      color: Color.fromARGB(255, 0, 114, 188),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

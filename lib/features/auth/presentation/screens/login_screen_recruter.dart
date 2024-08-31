@@ -59,7 +59,6 @@ class _LogInRecruterState extends State<LogInRecruter> {
                   welcomePath: Assets.helloSvg,
                   welcomeText: StaticText.welcomeBack,
                   smallText: StaticText.lookForCandidats,
-                  
                 ),
                 VerticalSpace(value: 52, ctx: context),
                 Form(
@@ -92,31 +91,37 @@ class _LogInRecruterState extends State<LogInRecruter> {
                       //   const ValidationError(errorText: 'Invalid password'),
                       VerticalSpace(value: 8, ctx: context),
                       TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      NamedRoutes.forgotPassword,
-                    );
-                  },
-                  child: Text(
-                    'Mot de passe oublié?',
-                    style: TextStyle(
-                      fontSize: scaleWidth(15, context),
-                      fontWeight: FontWeight.w400,
-                      color: Color.fromARGB(255, 146, 150, 163),
-                    ),
-                  ),
-                ),
+                        onPressed: () {
+                          Navigator.pushNamed(
+                            context,
+                            NamedRoutes.forgotPassword,
+                          );
+                        },
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Text(
+                            'Mot de passe oublié?',
+                            textAlign: TextAlign.right,
+                            style: TextStyle(
+                              fontSize: scaleWidth(12, context),
+                              fontWeight: FontWeight.w400,
+                              color: Color.fromARGB(255, 146, 150, 163),
+                            ),
+                          ),
+                        ),
+                      ),
+                      VerticalSpace(value: 8, ctx: context),
+                    
+
                       LoginButton(
                         loginText: StaticText.logIn,
-                        onTapButton: () => AuthFunctions.loginUser(
+                        onTapButton: () => AuthFunctions.loginCompany(
                           emailController: _emailController,
                           passWordController: _passWordController,
                           formKey: _formKey,
                           context: context,
                         ),
                       ),
-                      
                     ],
                   ),
                 ),
@@ -124,10 +129,30 @@ class _LogInRecruterState extends State<LogInRecruter> {
                 // FORGOT PASSWORD
                 VerticalSpace(value: 32, ctx: context),
 
-                
                 const ContinueWithOtherAccounts(isLogin: true),
+                VerticalSpace(value: 16, ctx: context),
 
-                // * CONTINUE WITH
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(
+                          context,
+                          NamedRoutes.registerScreenRecruter,
+                        );
+                      },
+                      child: Text(
+                        'Vous n\'avez pas de compte? Inscrivez-vous',
+                        style: TextStyle(
+                          fontSize: scaleWidth(12, context),
+                          fontWeight: FontWeight.w400,
+                          color: Color.fromARGB(255, 146, 150, 163),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),

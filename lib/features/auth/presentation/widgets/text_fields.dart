@@ -77,11 +77,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
         ),
         hintText: widget.hintText,
         prefixIcon: Padding(
-          padding: const EdgeInsets.all(
-            10,
-          ),
+          padding: const EdgeInsets.all(10),
           child: SvgPicture.asset(
             widget.textIcon,
+            width: 24, // Set your desired width
+            height: 24, // Set your desired height
           ),
         ),
         suffixIcon: widget.isPassword

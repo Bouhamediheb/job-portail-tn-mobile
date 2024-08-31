@@ -10,7 +10,8 @@ class NamedRoutes {
   static const String forgotPassword = '/forgotPassword';
   static const String successScreen = '/successScreen';
   static const String verifyCode = '/verifyCode';
-  static const String homeScreen = '/homeScreen';
+  static const String homeScreenSeeker = '/homeScreenSeeker';
+  static const String homeScreenRecruter = '/homeScreenRecruter';
   static const String mainScreen = '/mainScreen';
   static const String fullPageJob = '/fullPageJob';
   static const String savedJobs = '/savedJobs';
