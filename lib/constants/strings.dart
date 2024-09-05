@@ -91,6 +91,10 @@ class StaticText {
   static const String productManager = 'Chef de Produit';
 
   static const String searchChat = 'Rechercher un chat ou un message';
+
+  static const String vosJobs = 'Vos annonces de travail';
+
+  static const String vosInternships ="Vos annonces de stage";
 }
 
 class ErrorText {

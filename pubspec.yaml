@@ -55,6 +55,7 @@ dependencies:
   image_picker: ^1.1.2
   file_picker: ^8.0.5
   dio: ^5.6.0
+  flutter_spinkit: ^5.2.1
 
 dev_dependencies:
   flutter_test:
