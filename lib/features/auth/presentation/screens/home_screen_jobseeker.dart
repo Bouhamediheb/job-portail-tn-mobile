@@ -386,6 +386,7 @@ class _HomeScreenSeekerState extends State<HomeScreenSeeker> {
                       // FEATURED JOBS CAROUSEL
                       VerticalSpace(value: 40, ctx: context),
                       // Add any other widgets or sections here as needed
+                      
                     ],
                   ),
                 ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:job_search_app/features/auth/presentation/screens/applied_jobs_list.dart';
+import 'package:job_search_app/features/auth/presentation/screens/my_candidats_recruter.dart';
 import 'package:job_search_app/features/auth/presentation/screens/bookmarked_jobs_list.dart';
 import 'package:job_search_app/features/auth/presentation/screens/show_all_jobs.dart';
 
@@ -12,7 +12,7 @@ class Controller extends GetxController {
   final List<Widget> _tabs = [
     const HomeScreenSeeker(),
     const MessagesScreen(),
-    SavedJobsScreen(),
+    MyCandidatesScreenRecruter(),
     const JobDetailsCard(),
     BookMarkedJobsScreen(),
   ];

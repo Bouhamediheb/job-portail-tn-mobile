@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void _startPageTransition() {
     Future.delayed(const Duration(seconds: 3), () {
-      if (_currentPage < 2) {
+      if (_currentPage < 3) {
         _pageController.nextPage(
           duration: const Duration(milliseconds: 800),
           curve: Curves.easeInOut,
@@ -97,7 +97,7 @@ void _checkLoginStatusAndNavigate(bool isRecruiter) async {
       _currentPage = page;
     });
 
-    if (page < 2) {
+    if (page < 3) {
       _startPageTransition();
     }
   }
@@ -135,6 +135,11 @@ void _checkLoginStatusAndNavigate(bool isRecruiter) async {
                 imagePath: "assets/images/job.png",
                 text: 'Trouvez le travail de rêves \n ou le candidat parfait !',
               ),
+              _buildPageContent(
+                imagePath: "assets/images/job.png",
+text: 'Cette application est dans sa version 0.1 et manque quelques fonctionnalités. \n Veuillez nous excuser pour les désagréments.'
+              ),
+              
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

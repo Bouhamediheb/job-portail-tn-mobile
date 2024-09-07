@@ -49,6 +49,7 @@ class AuthFunctions {
     await prefs.setString('token', token);
     await prefs.setString('user', jsonEncode(user));
     await prefs.setInt('userId', response['user']['id'] as int);
+    await prefs.setString('type', 'seeker');
     print('User ID: ${response['user']['id']}');
     print('User logged in successfully');
     
@@ -339,10 +340,15 @@ static Future<void> loginCompany({
     return "";
   }
 
-  static Future<bool> checkIfAlreadyLoggedIn(BuildContext context) async {
+  static Future<bool> checkIfAlreadyLoggedInUser(BuildContext context) async {
   final prefs = await SharedPreferences.getInstance();
-  final token = prefs.getString('token');
-  return token != null;
+  //    check prefs.setString('type', 'seeker');
+  if (prefs.getString('type') == 'seeker') {
+    AppRoute.offNamedUntil(NamedRoutes.homeScreenSeeker);
+    return true;
+  } else {
+    return false;
+  }
 }
     
 }

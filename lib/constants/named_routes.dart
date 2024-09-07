@@ -5,7 +5,9 @@ class NamedRoutes {
   static const String LogInSeeker = '/logInSeeker';
   static const String logInRecruiter = '/logInRecruiter';
   static const String registerScreenSeeker = '/registerScreenSeeker';
+  static const String profileScreenRecruter = '/profileScreenRecruter';
   static const String registerScreenRecruter = '/registerScreenRecruter';
+  static const String appliedJobList = '/appliedJobList';
   static const String resetPassword = '/resetPassword';
   static const String forgotPassword = '/forgotPassword';
   static const String successScreen = '/successScreen';

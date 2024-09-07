@@ -214,7 +214,7 @@ class _JobFormScreenState extends State<JobFormScreen> {
                 TextFormField(
                   controller: _yearsOfExperienceController,
                   decoration: InputDecoration(
-                    labelText: 'Years of Experience *',
+                    labelText: 'Année expérience *',
                     border: OutlineInputBorder(),
                   ),
                   keyboardType: TextInputType.number,

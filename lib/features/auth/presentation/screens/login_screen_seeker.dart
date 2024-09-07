@@ -33,7 +33,7 @@ class _LogInSeekerState extends State<LogInSeeker> {
 void initState() {
   super.initState();
   WidgetsBinding.instance.addPostFrameCallback((_) async {
-    bool isLoggedIn = await AuthFunctions.checkIfAlreadyLoggedIn(context);
+    bool isLoggedIn = await AuthFunctions.checkIfAlreadyLoggedInUser(context);
     if (isLoggedIn) {
       Navigator.pushReplacementNamed(context, NamedRoutes.homeScreenSeeker);
     }
@@ -141,11 +141,42 @@ void initState() {
 
                 // * CONTINUE WITH
                 const ContinueWithOtherAccounts(isLogin: true),
+
+                VerticalSpace(value: 36, ctx: context),
+
+                Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Vous n\'avez pas de compte ?',
+                  style: TextStyle(
+                    fontSize: scaleWidth(12, context),
+                    color: Color.fromARGB(255, 146, 150, 163),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      NamedRoutes.registerScreenSeeker,
+                    );
+                  },
+                  child: Text(
+                    'Se connecter',
+                    style: TextStyle(
+                      fontSize: scaleWidth(12, context),
+                      color: Color.fromARGB(255, 0, 114, 188),
+                    ),
+                  ),
+                ),
               ],
             ),
-          ),
+          ],
         ),
       ),
-    );
+    ),
+  ),
+);
+
   }
 }

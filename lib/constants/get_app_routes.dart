@@ -5,6 +5,7 @@ import 'package:job_search_app/features/auth/presentation/screens/forgot_passwor
 import 'package:job_search_app/features/auth/presentation/screens/home_screen_recruter.dart';
 import 'package:job_search_app/features/auth/presentation/screens/login_screen_recruter.dart';
 import 'package:job_search_app/features/auth/presentation/screens/login_screen_seeker.dart';
+import 'package:job_search_app/features/auth/presentation/screens/profile_screen_recruter.dart';
 import 'package:job_search_app/features/auth/presentation/screens/register_screen_recruter.dart';
 import 'package:job_search_app/features/auth/presentation/screens/register_screen_seeker.dart';
 import 'package:job_search_app/features/auth/presentation/screens/reset_password.dart';
@@ -12,7 +13,7 @@ import 'package:job_search_app/features/auth/presentation/screens/verify_code.da
 import 'package:job_search_app/features/auth/presentation/screens/full_page_job.dart';
 import 'package:job_search_app/features/auth/presentation/screens/home_screen_jobseeker.dart';
 import 'package:job_search_app/features/main_screen.dart';
-import 'package:job_search_app/features/auth/presentation/screens/applied_jobs_list.dart';
+import 'package:job_search_app/features/auth/presentation/screens/my_candidats_recruter.dart';
 import 'package:job_search_app/utils/splash_screen.dart';
 import 'package:job_search_app/utils/success_screen.dart';
 
@@ -25,7 +26,7 @@ class GetAppRoutes {
         name: NamedRoutes.homeScreenSeeker,
         page: () => const HomeScreenSeeker(),
       ),
-       GetPage(
+      GetPage(
         name: NamedRoutes.homeScreenRecruter,
         page: () => const HomeScreenRecruter(),
       ),
@@ -38,16 +39,20 @@ class GetAppRoutes {
         page: () => const LogInRecruter(),
       ),
       GetPage(
-        name: NamedRoutes.registerScreenSeeker,
-        page: () => const RegisterScreenSeeker()
-      ),
+          name: NamedRoutes.registerScreenSeeker,
+          page: () => const RegisterScreenSeeker()),
       GetPage(
         name: NamedRoutes.registerScreenRecruter,
         page: () => const RegisterScreenRecruter(),
       ),
+      GetPage(name: NamedRoutes.appliedJobList, page: () => MyCandidatesScreenRecruter()),
       GetPage(
         name: NamedRoutes.splashScreen,
         page: () => const SplashScreen(),
+      ),
+      GetPage(
+        name: NamedRoutes.profileScreenRecruter,
+        page: () =>  ProfileScreenRecruter(),
       ),
       GetPage(
         name: NamedRoutes.forgotPassword,
@@ -75,7 +80,7 @@ class GetAppRoutes {
       ),
       GetPage(
         name: NamedRoutes.savedJobs,
-        page: () => SavedJobsScreen(),
+        page: () => MyCandidatesScreenRecruter(),
       ),
     ];
   }

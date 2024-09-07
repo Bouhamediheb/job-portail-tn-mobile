@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:job_search_app/constants/assets_location.dart';
+import 'package:job_search_app/constants/named_routes.dart';
 import 'package:job_search_app/features/auth/data/controllers/auth_functions.dart';
 import 'package:job_search_app/features/auth/data/controllers/validation.dart';
 import 'package:job_search_app/features/auth/presentation/widgets/login_button.dart';
@@ -11,12 +14,12 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ProfileScreen extends StatefulWidget {
+class ProfileScreenRecruter extends StatefulWidget {
   @override
-  _ProfileScreenState createState() => _ProfileScreenState();
+  _ProfileScreenRecruterState createState() => _ProfileScreenRecruterState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _ProfileScreenRecruterState extends State<ProfileScreenRecruter> {
   final TextEditingController addressController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController faxController = TextEditingController();
@@ -161,7 +164,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+ bottomNavigationBar: BottomNavigationBar(
+          elevation: 0,
+          enableFeedback: true,
+          backgroundColor: Colors.white,
+          selectedItemColor: Color.fromARGB(255, 43, 57, 82),
+          unselectedItemColor: Colors.grey,
+          currentIndex: 2,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Accueil',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.bookmark),
+              label: 'Vos candidats',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Profil',
+            ),
+          ],
+          onTap: (index) {
+            if (index == 0) {
+              Get.toNamed(NamedRoutes.homeScreenRecruter);
+            } else if (index == 1) {
+              Get.toNamed(NamedRoutes.appliedJobList);
+            } else {
+              Get.toNamed(NamedRoutes.profileScreenRecruter);
+            }
+          },
+        ),      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('Votre profil pro'),
         backgroundColor: Colors.white,
@@ -210,7 +243,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  child: Text('Choisir une image'),
+                  child: Text('Choisir une image', style: TextStyle(color: Colors.white)),
                 ),
               ],
             ),

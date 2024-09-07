@@ -6,6 +6,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart'; // Add this for spinner
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:job_search_app/constants/named_routes.dart';
+import 'package:job_search_app/features/auth/presentation/screens/my_candidats_recruter.dart';
 import 'package:job_search_app/features/auth/presentation/screens/full_page_job_recruter.dart';
 import 'package:job_search_app/features/auth/presentation/screens/post_job.dart';
 import 'package:job_search_app/features/auth/presentation/screens/profile_screen_recruter.dart';
@@ -236,6 +238,36 @@ Widget build(BuildContext context) {
           },
           child: const Icon(Icons.add, color: Colors.white),
         ),
+        bottomNavigationBar: BottomNavigationBar(
+          elevation: 0,
+          enableFeedback: true,
+          backgroundColor: Colors.white,
+          selectedItemColor: Color.fromARGB(255, 43, 57, 82),
+          unselectedItemColor: Colors.grey,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Accueil',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.bookmark),
+              label: 'Vos candidats',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Profil',
+            ),
+          ],
+          onTap: (index) {
+            if (index == 0) {
+              Get.toNamed(NamedRoutes.homeScreenRecruter);
+            } else if (index == 1) {
+              Get.toNamed(NamedRoutes.appliedJobList);
+            } else {
+              Get.toNamed(NamedRoutes.profileScreenRecruter);
+            }
+          },
+        ),
         body: loading
             ? Center(
                 child: SpinKitFadingCircle(
@@ -264,7 +296,7 @@ Widget build(BuildContext context) {
                               PopupMenuButton<String>(
                                 onSelected: (value) {
                                   if (value == 'Profile') {
-                                    Get.to(() => ProfileScreen());
+                                    Get.to(() => ProfileScreenRecruter());
                                   } else if (value == 'Deconnexion') {
                                     showSignOutDialog(context);
                                   }

@@ -6,19 +6,20 @@ import 'package:job_search_app/constants/dimensions.dart';
 import 'package:job_search_app/constants/named_routes.dart';
 import 'package:job_search_app/controllers/data_controller.dart';
 import 'package:job_search_app/features/auth/presentation/screens/full_page_job.dart';
+import 'package:job_search_app/features/auth/presentation/screens/profile_screen_recruter.dart';
 import 'package:job_search_app/modals/data/Job.dart';
 import 'package:job_search_app/themes/color_styles.dart';
 import 'package:job_search_app/themes/font_styles.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SavedJobsScreen extends StatefulWidget {
-  SavedJobsScreen({super.key});
+class AppliedJobList extends StatefulWidget {
+  AppliedJobList({super.key});
 
   @override
-  _SavedJobsScreenState createState() => _SavedJobsScreenState();
+  _AppliedJobListState createState() => _AppliedJobListState();
 }
 
-class _SavedJobsScreenState extends State<SavedJobsScreen> {
+class _AppliedJobListState extends State<AppliedJobList> {
   final DataController controller = Get.put(DataController());
   final Map<int, String> companyNames = {};
   final Map<int, String> companyLogos = {};
@@ -37,6 +38,34 @@ class _SavedJobsScreenState extends State<SavedJobsScreen> {
         ),
         backgroundColor: ColorStyles.pureWhite,
       ),
+       bottomNavigationBar: BottomNavigationBar(
+          elevation: 1,
+          backgroundColor: Colors.white,
+          selectedItemColor: Color.fromARGB(255, 43, 57, 82),
+          unselectedItemColor: Colors.grey,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Accueil',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.bookmark),
+              label: 'Vos candidats',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Profil',
+            ),
+          ],
+          onTap: (index) {
+            if (index == 0) {
+              Get.toNamed(NamedRoutes.homeScreenRecruter);
+            } else if (index == 1) {
+              Get.toNamed(NamedRoutes.appliedJobList);
+            } else {
+            }
+          },
+        ),
       body: FutureBuilder<List<Job>>(
         future: _fetchAppliedJobs(),
         builder: (context, snapshot) {
