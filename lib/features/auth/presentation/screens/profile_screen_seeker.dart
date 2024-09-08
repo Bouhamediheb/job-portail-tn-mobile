@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:job_search_app/features/auth/presentation/widgets/login_button.dart';
+import 'package:portail_tn/features/auth/presentation/widgets/login_button.dart';
 
 class ProfileScreenSeeker extends StatefulWidget {
   @override
@@ -210,7 +210,9 @@ class _ProfileScreenSeekerState extends State<ProfileScreenSeeker> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Text('Mon profil'),
       ),
       body: SingleChildScrollView(

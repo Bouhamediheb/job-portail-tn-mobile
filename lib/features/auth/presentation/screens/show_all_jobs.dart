@@ -2,19 +2,19 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:job_search_app/constants/assets_location.dart';
-import 'package:job_search_app/constants/dimensions.dart';
-import 'package:job_search_app/constants/named_routes.dart';
-import 'package:job_search_app/constants/strings.dart';
-import 'package:job_search_app/controllers/controller.dart';
-import 'package:job_search_app/features/auth/data/controllers/validation.dart';
-import 'package:job_search_app/features/auth/presentation/widgets/text_fields.dart';
-import 'package:job_search_app/features/auth/presentation/screens/full_page_job.dart';
-import 'package:job_search_app/features/widgets/custom_progress_indicator.dart';
-import 'package:job_search_app/features/widgets/vetical_space.dart';
-import 'package:job_search_app/modals/data/Job.dart';
-import 'package:job_search_app/themes/color_styles.dart';
-import 'package:job_search_app/themes/font_styles.dart' show FontStyles;
+import 'package:portail_tn/constants/assets_location.dart';
+import 'package:portail_tn/constants/dimensions.dart';
+import 'package:portail_tn/constants/named_routes.dart';
+import 'package:portail_tn/constants/strings.dart';
+import 'package:portail_tn/controllers/controller.dart';
+import 'package:portail_tn/features/auth/data/controllers/validation.dart';
+import 'package:portail_tn/features/auth/presentation/widgets/text_fields.dart';
+import 'package:portail_tn/features/auth/presentation/screens/full_page_job.dart';
+import 'package:portail_tn/features/widgets/custom_progress_indicator.dart';
+import 'package:portail_tn/features/widgets/vetical_space.dart';
+import 'package:portail_tn/modals/data/Job.dart';
+import 'package:portail_tn/themes/color_styles.dart';
+import 'package:portail_tn/themes/font_styles.dart' show FontStyles;
 import 'package:intl/intl.dart';
 
 
@@ -129,312 +129,317 @@ class _JobDetailsCardState extends State<JobDetailsCard> {
   @override
   Widget build(BuildContext context) {
     final Controller tabSwitchController = Get.put(Controller());
-    return SafeArea(
-      minimum: const EdgeInsets.all(16),
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'Offres d\'emploi et stages',
-            style: TextStyle(
-              color: ColorStyles.darkTitleColor,
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          backgroundColor: ColorStyles.pureWhite,
-        ),
-        body: loading
-            ? const CustomProgressIndicator()
-            : Column(
-                children: [
-                  Container(
-                    height: scaleHeight(
-                      47,
-                      context,
-                    ),
-                    decoration: BoxDecoration(
-                      color: ColorStyles.forgotMailPassColor,
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: scaleWidth(
-                          7,
-                          context,
-                        ),
-                        vertical: scaleHeight(
-                          6,
-                          context,
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              height: scaleHeight(
-                                43,
-                                context,
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(
-                                  scaleRadius(
-                                    16,
-                                    context,
-                                  ),
-                                ),
-                                color: isJob
-                                    ? Colors.white
-                                    : ColorStyles.forgotMailPassColor,
-                              ),
-                              child: GestureDetector(
-                                onTap: () {
-                                  // Change state of buttons here
-                                  setState(() {
-                                    isInternship = false;
-                                    isJob = true;
-                                  });
-                                },
-                                child: const Center(
-                                  child: Text(
-                                    "Offres d'emplois",
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              height: scaleHeight(
-                                43,
-                                context,
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(
-                                  scaleRadius(16, context),
-                                ),
-                                color: isInternship
-                                    ? Colors.white
-                                    : ColorStyles.forgotMailPassColor,
-                              ),
-                              child: GestureDetector(
-                                onTap: () {
-                                  // Change state of buttons here
-                                  setState(() {
-                                    isInternship = true;
-                                    isJob = false;
-                                  });
-                                },
-                                child: const Center(
-                                  child: Text(
-                                    'Offres de stages',
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  VerticalSpace(
-                    value: 16,
-                    ctx: context,
-                  ),
-                  if (isJob)
-                    Expanded(
-                      child: jobs.isEmpty
-                          ? Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(20.0),
-                                child: Text(
-                                  'Pas d\'offres d\'emploi disponibles \n ou ne correspondent pas \n à vos critères de filtre.',
-                                  style: TextStyle(
-                                    color:
-                                        const Color.fromARGB(255, 43, 57, 82),
-                                    fontSize: 18,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            )
-                          : ListView.builder(
-                              itemCount: jobs.length,
-                              itemBuilder: (context, index) {
-                                final job = jobs[index];
-                                final companyName =
-                                    companyNames[job.societe_id] ?? 'Unknown';
-                                final companyLogo =
-                                    companyLogos[job.societe_id];
-
-                                return Container(
-                                  margin: EdgeInsets.symmetric(
-                                      vertical: 10, horizontal: 15),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(12),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black12,
-                                        offset: Offset(0, 2),
-                                        blurRadius: 4,
-                                      ),
-                                    ],
-                                  ),
-                                  child: ListTile(
-                                    contentPadding: EdgeInsets.symmetric(
-                                        horizontal: 16, vertical: 12),
-                                    leading: companyLogo != null
-                                        ? ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                            child: Image.network(
-                                              companyLogo,
-                                              width: 50,
-                                              height: 50,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          )
-                                        : Container(
-                                            width: 50,
-                                            height: 50,
-                                            decoration: BoxDecoration(
-                                              color: Colors.grey.shade200,
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                            ),
-                                            child: const Icon(
-                                              Icons.business,
-                                              color: Colors.grey,
-                                            ),
-                                          ),
-                                    title: Text(
-                                      job.title,
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    subtitle: Text(
-                                      '$companyName\n${job.city}\n${job.yearsOfExperience} years experience',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.grey.shade600,
-                                        height: 1.5,
-                                      ),
-                                    ),
-                                    isThreeLine: true,
-                                    onTap: () {
-                                      _navigateToJobDetails(job);
-                                    },
-                                  ),
-                                );
-                              },
-                            ),
-                    )
-                  else if (isInternship)
-                    Expanded(
-                      child: internships.isEmpty
-                          ? Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(20.0),
-                                child: Text(
-                                  'Pas d\'offres de stage disponibles \n ou ne correspondent pas \n à vos critères de filtre.',
-                                  style: TextStyle(
-                                    color:
-                                        const Color.fromARGB(255, 43, 57, 82),
-                                    fontSize: 18,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            )
-                          : ListView.builder(
-                              itemCount: internships.length,
-                              itemBuilder: (context, index) {
-                                final internship = internships[index];
-                                final companyName =
-                                    companyNames[internship.societe_id] ??
-                                        'Unknown';
-                                final companyLogo =
-                                    companyLogos[internship.societe_id];
-
-                                return Container(
-                                  margin: EdgeInsets.symmetric(
-                                      vertical: 10, horizontal: 15),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(12),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black12,
-                                        offset: Offset(0, 2),
-                                        blurRadius: 4,
-                                      ),
-                                    ],
-                                  ),
-                                  child: ListTile(
-                                    contentPadding: EdgeInsets.symmetric(
-                                        horizontal: 16, vertical: 12),
-                                    leading: companyLogo != null
-                                        ? ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                            child: Image.network(
-                                              companyLogo,
-                                              width: 50,
-                                              height: 50,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          )
-                                        : Container(
-                                            width: 50,
-                                            height: 50,
-                                            decoration: BoxDecoration(
-                                              color: Colors.grey.shade200,
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                            ),
-                                            child: const Icon(
-                                              Icons.business,
-                                              color: Colors.grey,
-                                            ),
-                                          ),
-                                    title: Text(
-                                      internship.title,
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    subtitle: Text(
-                                      '$companyName\n${internship.city}\n${internship.yearsOfExperience} years experience',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.grey.shade600,
-                                        height: 1.5,
-                                      ),
-                                    ),
-                                    isThreeLine: true,
-                                    onTap: () {
-                                      // Handle internship tap, maybe navigate to internship details page
-                                    },
-                                  ),
-                                );
-                              },
-                            ),
-                    )
-                ],
+    return Container(
+      color: Colors.white,
+      child: SafeArea(
+        
+        minimum: const EdgeInsets.all(16),
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            title: const Text(
+              'Offres d\'emploi et stages',
+              style: TextStyle(
+                color: ColorStyles.darkTitleColor,
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
               ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Color.fromARGB(255, 227, 234, 252),
-          onPressed: () {
-            _showFilterDialog(context);
-          },
-          child: const Icon(Icons.filter_list),
+            ),
+            backgroundColor: ColorStyles.pureWhite,
+          ),
+          body: loading
+              ? const CustomProgressIndicator()
+              : Column(
+                  children: [
+                    Container(
+                      height: scaleHeight(
+                        47,
+                        context,
+                      ),
+                      decoration: BoxDecoration(
+                        color: ColorStyles.forgotMailPassColor,
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: scaleWidth(
+                            7,
+                            context,
+                          ),
+                          vertical: scaleHeight(
+                            6,
+                            context,
+                          ),
+                        ),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Container(
+                                height: scaleHeight(
+                                  43,
+                                  context,
+                                ),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(
+                                    scaleRadius(
+                                      16,
+                                      context,
+                                    ),
+                                  ),
+                                  color: isJob
+                                      ? Colors.white
+                                      : ColorStyles.forgotMailPassColor,
+                                ),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    // Change state of buttons here
+                                    setState(() {
+                                      isInternship = false;
+                                      isJob = true;
+                                    });
+                                  },
+                                  child: const Center(
+                                    child: Text(
+                                      "Offres d'emplois",
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                height: scaleHeight(
+                                  43,
+                                  context,
+                                ),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(
+                                    scaleRadius(16, context),
+                                  ),
+                                  color: isInternship
+                                      ? Colors.white
+                                      : ColorStyles.forgotMailPassColor,
+                                ),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    // Change state of buttons here
+                                    setState(() {
+                                      isInternship = true;
+                                      isJob = false;
+                                    });
+                                  },
+                                  child: const Center(
+                                    child: Text(
+                                      'Offres de stages',
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    VerticalSpace(
+                      value: 16,
+                      ctx: context,
+                    ),
+                    if (isJob)
+                      Expanded(
+                        child: jobs.isEmpty
+                            ? Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(20.0),
+                                  child: Text(
+                                    'Pas d\'offres d\'emploi disponibles \n ou ne correspondent pas \n à vos critères de filtre.',
+                                    style: TextStyle(
+                                      color:
+                                          const Color.fromARGB(255, 43, 57, 82),
+                                      fontSize: 18,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              )
+                            : ListView.builder(
+                                itemCount: jobs.length,
+                                itemBuilder: (context, index) {
+                                  final job = jobs[index];
+                                  final companyName =
+                                      companyNames[job.societe_id] ?? 'Unknown';
+                                  final companyLogo =
+                                      companyLogos[job.societe_id];
+      
+                                  return Container(
+                                    margin: EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 15),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(12),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black12,
+                                          offset: Offset(0, 2),
+                                          blurRadius: 4,
+                                        ),
+                                      ],
+                                    ),
+                                    child: ListTile(
+                                      contentPadding: EdgeInsets.symmetric(
+                                          horizontal: 16, vertical: 12),
+                                      leading: companyLogo != null
+                                          ? ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              child: Image.network(
+                                                companyLogo,
+                                                width: 50,
+                                                height: 50,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            )
+                                          : Container(
+                                              width: 50,
+                                              height: 50,
+                                              decoration: BoxDecoration(
+                                                color: Colors.grey.shade200,
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                              ),
+                                              child: const Icon(
+                                                Icons.business,
+                                                color: Colors.grey,
+                                              ),
+                                            ),
+                                      title: Text(
+                                        job.title,
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      subtitle: Text(
+                                        '$companyName\n${job.city}\n${job.yearsOfExperience} years experience',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.grey.shade600,
+                                          height: 1.5,
+                                        ),
+                                      ),
+                                      isThreeLine: true,
+                                      onTap: () {
+                                        _navigateToJobDetails(job);
+                                      },
+                                    ),
+                                  );
+                                },
+                              ),
+                      )
+                    else if (isInternship)
+                      Expanded(
+                        child: internships.isEmpty
+                            ? Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(20.0),
+                                  child: Text(
+                                    'Pas d\'offres de stage disponibles \n ou ne correspondent pas \n à vos critères de filtre.',
+                                    style: TextStyle(
+                                      color:
+                                          const Color.fromARGB(255, 43, 57, 82),
+                                      fontSize: 18,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              )
+                            : ListView.builder(
+                                itemCount: internships.length,
+                                itemBuilder: (context, index) {
+                                  final internship = internships[index];
+                                  final companyName =
+                                      companyNames[internship.societe_id] ??
+                                          'Unknown';
+                                  final companyLogo =
+                                      companyLogos[internship.societe_id];
+      
+                                  return Container(
+                                    margin: EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 15),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(12),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black12,
+                                          offset: Offset(0, 2),
+                                          blurRadius: 4,
+                                        ),
+                                      ],
+                                    ),
+                                    child: ListTile(
+                                      contentPadding: EdgeInsets.symmetric(
+                                          horizontal: 16, vertical: 12),
+                                      leading: companyLogo != null
+                                          ? ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              child: Image.network(
+                                                companyLogo,
+                                                width: 50,
+                                                height: 50,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            )
+                                          : Container(
+                                              width: 50,
+                                              height: 50,
+                                              decoration: BoxDecoration(
+                                                color: Colors.grey.shade200,
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                              ),
+                                              child: const Icon(
+                                                Icons.business,
+                                                color: Colors.grey,
+                                              ),
+                                            ),
+                                      title: Text(
+                                        internship.title,
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      subtitle: Text(
+                                        '$companyName\n${internship.city}\n${internship.yearsOfExperience} years experience',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.grey.shade600,
+                                          height: 1.5,
+                                        ),
+                                      ),
+                                      isThreeLine: true,
+                                      onTap: () {
+                                        // Handle internship tap, maybe navigate to internship details page
+                                      },
+                                    ),
+                                  );
+                                },
+                              ),
+                      )
+                  ],
+                ),
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: Color.fromARGB(255, 227, 234, 252),
+            onPressed: () {
+              _showFilterDialog(context);
+            },
+            child: const Icon(Icons.filter_list),
+          ),
         ),
       ),
     );

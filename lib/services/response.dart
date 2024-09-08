@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:job_search_app/constants/data_location.dart';
+import 'package:portail_tn/constants/data_location.dart';
 import 'package:http/http.dart' as http;
 
 class ResponseService {

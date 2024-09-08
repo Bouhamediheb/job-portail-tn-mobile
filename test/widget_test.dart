@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:job_search_app/app_job_search.dart';
+import 'package:portail_tn/app_job_search.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

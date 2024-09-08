@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:job_search_app/constants/dimensions.dart';
-import 'package:job_search_app/themes/color_styles.dart';
+import 'package:portail_tn/constants/dimensions.dart';
+import 'package:portail_tn/themes/color_styles.dart';
 
 class Pill extends StatelessWidget {
   const Pill(this.text, {super.key});

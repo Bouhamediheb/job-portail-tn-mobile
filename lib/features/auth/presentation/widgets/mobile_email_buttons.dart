@@ -1,11 +1,11 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:job_search_app/constants/strings.dart';
-import 'package:job_search_app/themes/color_styles.dart';
-import 'package:job_search_app/constants/dimensions.dart';
-import 'package:job_search_app/constants/assets_location.dart';
-import 'package:job_search_app/features/auth/presentation/widgets/text_fields.dart';
-import 'package:job_search_app/features/auth/data/controllers/validation.dart';
+import 'package:portail_tn/constants/strings.dart';
+import 'package:portail_tn/themes/color_styles.dart';
+import 'package:portail_tn/constants/dimensions.dart';
+import 'package:portail_tn/constants/assets_location.dart';
+import 'package:portail_tn/features/auth/presentation/widgets/text_fields.dart';
+import 'package:portail_tn/features/auth/data/controllers/validation.dart';
 
 class PassMailButton extends StatefulWidget {
   const PassMailButton({super.key, required this.resetController});

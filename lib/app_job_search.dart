@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:job_search_app/constants/get_app_routes.dart';
-import 'package:job_search_app/constants/strings.dart';
-import 'package:job_search_app/themes/color_styles.dart';
-import 'package:job_search_app/themes/font_styles.dart';
+import 'package:portail_tn/constants/get_app_routes.dart';
+import 'package:portail_tn/constants/strings.dart';
+import 'package:portail_tn/themes/color_styles.dart';
+import 'package:portail_tn/themes/font_styles.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'app_translation.dart';

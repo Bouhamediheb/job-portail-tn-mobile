@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:job_search_app/constants/assets_location.dart';
-import 'package:job_search_app/constants/dimensions.dart';
-import 'package:job_search_app/features/messages/widgets_messages/message_bar.dart';
-import 'package:job_search_app/features/messages/widgets_messages/message_search_bar.dart';
-import 'package:job_search_app/features/messages/widgets_messages/message_tile.dart';
-import 'package:job_search_app/features/messages/widgets_messages/type_of_message.dart';
-import 'package:job_search_app/features/widgets/vetical_space.dart';
+import 'package:portail_tn/constants/assets_location.dart';
+import 'package:portail_tn/constants/dimensions.dart';
+import 'package:portail_tn/features/messages/widgets_messages/message_bar.dart';
+import 'package:portail_tn/features/messages/widgets_messages/message_search_bar.dart';
+import 'package:portail_tn/features/messages/widgets_messages/message_tile.dart';
+import 'package:portail_tn/features/messages/widgets_messages/type_of_message.dart';
+import 'package:portail_tn/features/widgets/vetical_space.dart';
 
 class MessagesScreen extends StatelessWidget {
   const MessagesScreen({super.key});

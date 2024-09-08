@@ -3,14 +3,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:job_search_app/atom/pill.dart';
-import 'package:job_search_app/constants/assets_location.dart';
-import 'package:job_search_app/constants/dimensions.dart';
-import 'package:job_search_app/controllers/data_controller.dart';
-import 'package:job_search_app/features/widgets/horizontal_space.dart';
-import 'package:job_search_app/features/widgets/vetical_space.dart';
-import 'package:job_search_app/modals/data/data_model.dart';
-import 'package:job_search_app/themes/color_styles.dart';
+import 'package:portail_tn/atom/pill.dart';
+import 'package:portail_tn/constants/assets_location.dart';
+import 'package:portail_tn/constants/dimensions.dart';
+import 'package:portail_tn/controllers/data_controller.dart';
+import 'package:portail_tn/features/widgets/horizontal_space.dart';
+import 'package:portail_tn/features/widgets/vetical_space.dart';
+import 'package:portail_tn/modals/data/data_model.dart';
+import 'package:portail_tn/themes/color_styles.dart';
 import '../../controllers/controller.dart';
 
 class JobsCard extends StatelessWidget {

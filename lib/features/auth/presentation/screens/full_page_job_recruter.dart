@@ -2,12 +2,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:job_search_app/constants/assets_location.dart';
-import 'package:job_search_app/constants/dimensions.dart';
-import 'package:job_search_app/controllers/controller.dart';
-import 'package:job_search_app/features/widgets/vetical_space.dart';
-import 'package:job_search_app/modals/data/Job.dart';
-import 'package:job_search_app/themes/color_styles.dart';
+import 'package:portail_tn/constants/assets_location.dart';
+import 'package:portail_tn/constants/dimensions.dart';
+import 'package:portail_tn/controllers/controller.dart';
+import 'package:portail_tn/features/widgets/vetical_space.dart';
+import 'package:portail_tn/modals/data/Job.dart';
+import 'package:portail_tn/themes/color_styles.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 

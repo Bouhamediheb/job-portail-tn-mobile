@@ -1,4 +1,4 @@
-import 'package:job_search_app/constants/assets_location.dart';
+import 'package:portail_tn/constants/assets_location.dart';
 
 class Job {
   final int id;

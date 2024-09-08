@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:job_search_app/constants/dimensions.dart';
-import 'package:job_search_app/features/widgets/vetical_space.dart';
+import 'package:portail_tn/constants/dimensions.dart';
+import 'package:portail_tn/features/widgets/vetical_space.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SkeletonLoader extends StatelessWidget {

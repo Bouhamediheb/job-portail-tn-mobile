@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:job_search_app/themes/color_styles.dart';
+import 'package:portail_tn/themes/color_styles.dart';
 import 'dart:math' as math;
 
 class SemiCircle extends StatelessWidget {

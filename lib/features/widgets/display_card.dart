@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:job_search_app/atom/pill.dart';
-import 'package:job_search_app/constants/assets_location.dart';
-import 'package:job_search_app/constants/dimensions.dart';
-import 'package:job_search_app/constants/strings.dart';
-import 'package:job_search_app/features/widgets/vetical_space.dart';
-import 'package:job_search_app/themes/color_styles.dart';
+import 'package:portail_tn/atom/pill.dart';
+import 'package:portail_tn/constants/assets_location.dart';
+import 'package:portail_tn/constants/dimensions.dart';
+import 'package:portail_tn/constants/strings.dart';
+import 'package:portail_tn/features/widgets/vetical_space.dart';
+import 'package:portail_tn/themes/color_styles.dart';
 
 class DisplayCard extends StatelessWidget {
   const DisplayCard({

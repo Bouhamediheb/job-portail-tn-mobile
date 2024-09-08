@@ -1,21 +1,21 @@
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:job_search_app/constants/named_routes.dart';
-import 'package:job_search_app/features/auth/presentation/screens/forgot_password.dart';
-import 'package:job_search_app/features/auth/presentation/screens/home_screen_recruter.dart';
-import 'package:job_search_app/features/auth/presentation/screens/login_screen_recruter.dart';
-import 'package:job_search_app/features/auth/presentation/screens/login_screen_seeker.dart';
-import 'package:job_search_app/features/auth/presentation/screens/profile_screen_recruter.dart';
-import 'package:job_search_app/features/auth/presentation/screens/register_screen_recruter.dart';
-import 'package:job_search_app/features/auth/presentation/screens/register_screen_seeker.dart';
-import 'package:job_search_app/features/auth/presentation/screens/reset_password.dart';
-import 'package:job_search_app/features/auth/presentation/screens/verify_code.dart';
-import 'package:job_search_app/features/auth/presentation/screens/full_page_job.dart';
-import 'package:job_search_app/features/auth/presentation/screens/home_screen_jobseeker.dart';
-import 'package:job_search_app/features/main_screen.dart';
-import 'package:job_search_app/features/auth/presentation/screens/my_candidats_recruter.dart';
-import 'package:job_search_app/utils/splash_screen.dart';
-import 'package:job_search_app/utils/success_screen.dart';
+import 'package:portail_tn/constants/named_routes.dart';
+import 'package:portail_tn/features/auth/presentation/screens/forgot_password.dart';
+import 'package:portail_tn/features/auth/presentation/screens/home_screen_recruter.dart';
+import 'package:portail_tn/features/auth/presentation/screens/login_screen_recruter.dart';
+import 'package:portail_tn/features/auth/presentation/screens/login_screen_seeker.dart';
+import 'package:portail_tn/features/auth/presentation/screens/profile_screen_recruter.dart';
+import 'package:portail_tn/features/auth/presentation/screens/register_screen_recruter.dart';
+import 'package:portail_tn/features/auth/presentation/screens/register_screen_seeker.dart';
+import 'package:portail_tn/features/auth/presentation/screens/reset_password.dart';
+import 'package:portail_tn/features/auth/presentation/screens/verify_code.dart';
+import 'package:portail_tn/features/auth/presentation/screens/full_page_job.dart';
+import 'package:portail_tn/features/auth/presentation/screens/home_screen_jobseeker.dart';
+import 'package:portail_tn/features/main_screen.dart';
+import 'package:portail_tn/features/auth/presentation/screens/my_candidats_recruter.dart';
+import 'package:portail_tn/utils/splash_screen.dart';
+import 'package:portail_tn/utils/success_screen.dart';
 
 class GetAppRoutes {
   GetAppRoutes._();

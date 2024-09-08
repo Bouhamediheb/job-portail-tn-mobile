@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:job_search_app/features/auth/data/controllers/auth_functions.dart';
-import 'package:job_search_app/features/auth/presentation/widgets/login_button.dart';
-import 'package:job_search_app/features/widgets/otp_button.dart';
-import 'package:job_search_app/features/widgets/svg_banner.dart';
-import 'package:job_search_app/themes/font_styles.dart';
-import 'package:job_search_app/constants/strings.dart';
+import 'package:portail_tn/features/auth/data/controllers/auth_functions.dart';
+import 'package:portail_tn/features/auth/presentation/widgets/login_button.dart';
+import 'package:portail_tn/features/widgets/otp_button.dart';
+import 'package:portail_tn/features/widgets/svg_banner.dart';
+import 'package:portail_tn/themes/font_styles.dart';
+import 'package:portail_tn/constants/strings.dart';
 
 class VerifyCode extends StatefulWidget {
   const VerifyCode({super.key});

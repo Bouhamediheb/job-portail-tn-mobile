@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:job_search_app/constants/named_routes.dart';
-import 'package:job_search_app/features/auth/data/services/firebase/auth_service.dart';
-import 'package:job_search_app/constants/dimensions.dart';
-import 'package:job_search_app/features/widgets/failure_snack_bar.dart';
-import 'package:job_search_app/themes/font_styles.dart';
-import 'package:job_search_app/constants/assets_location.dart';
+import 'package:portail_tn/constants/named_routes.dart';
+import 'package:portail_tn/features/auth/data/services/firebase/auth_service.dart';
+import 'package:portail_tn/constants/dimensions.dart';
+import 'package:portail_tn/features/widgets/failure_snack_bar.dart';
+import 'package:portail_tn/themes/font_styles.dart';
+import 'package:portail_tn/constants/assets_location.dart';
 
 class ContinueWithOtherAccounts extends StatelessWidget {
   const ContinueWithOtherAccounts({super.key, required this.isLogin});

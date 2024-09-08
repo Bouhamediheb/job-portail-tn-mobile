@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:job_search_app/constants/named_routes.dart';
+import 'package:portail_tn/constants/named_routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MyCandidatesScreenRecruter extends StatefulWidget {

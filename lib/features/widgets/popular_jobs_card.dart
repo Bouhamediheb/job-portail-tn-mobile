@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:job_search_app/constants/dimensions.dart';
-import 'package:job_search_app/themes/color_styles.dart';
+import 'package:portail_tn/constants/dimensions.dart';
+import 'package:portail_tn/themes/color_styles.dart';
 
 class PopularJobsCard extends StatelessWidget {
   const PopularJobsCard({

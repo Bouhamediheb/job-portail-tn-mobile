@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:job_search_app/constants/dimensions.dart';
+import 'package:portail_tn/constants/dimensions.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({

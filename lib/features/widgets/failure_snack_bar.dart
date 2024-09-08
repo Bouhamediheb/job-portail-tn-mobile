@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:job_search_app/themes/color_styles.dart';
-import 'package:job_search_app/themes/font_styles.dart';
+import 'package:portail_tn/themes/color_styles.dart';
+import 'package:portail_tn/themes/font_styles.dart';
 
 void failureBar(String text, BuildContext context) =>
     ScaffoldMessenger.of(context).showSnackBar(

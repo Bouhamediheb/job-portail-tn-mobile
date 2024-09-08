@@ -1,4 +1,4 @@
-import 'package:job_search_app/constants/strings.dart';
+import 'package:portail_tn/constants/strings.dart';
 
 abstract class AppTranslation {
   AppTranslation._();

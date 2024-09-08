@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:job_search_app/constants/dimensions.dart';
-import 'package:job_search_app/features/auth/data/controllers/auth_functions.dart';
-import 'package:job_search_app/features/auth/presentation/widgets/login_button.dart';
-import 'package:job_search_app/features/widgets/vetical_space.dart';
-import 'package:job_search_app/themes/font_styles.dart';
-import 'package:job_search_app/constants/strings.dart';
+import 'package:portail_tn/constants/dimensions.dart';
+import 'package:portail_tn/features/auth/data/controllers/auth_functions.dart';
+import 'package:portail_tn/features/auth/presentation/widgets/login_button.dart';
+import 'package:portail_tn/features/widgets/vetical_space.dart';
+import 'package:portail_tn/themes/font_styles.dart';
+import 'package:portail_tn/constants/strings.dart';
 
 class SuccessScreen extends StatelessWidget {
   const SuccessScreen({super.key});

@@ -1,5 +1,5 @@
-import 'package:job_search_app/modals/data/data_model.dart';
-import 'package:job_search_app/services/response.dart';
+import 'package:portail_tn/modals/data/data_model.dart';
+import 'package:portail_tn/services/response.dart';
 
 class Repo {
   Repo._();

@@ -2,19 +2,19 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:job_search_app/constants/assets_location.dart';
-import 'package:job_search_app/constants/dimensions.dart';
-import 'package:job_search_app/constants/strings.dart';
-import 'package:job_search_app/features/auth/data/controllers/auth_functions.dart';
-import 'package:job_search_app/features/auth/presentation/screens/profile_screen_seeker.dart';
-import 'package:job_search_app/features/widgets/display_card.dart';
-import 'package:job_search_app/features/widgets/featured_jobs_tile.dart';
-import 'package:job_search_app/features/widgets/horizontal_space.dart';
-import 'package:job_search_app/features/widgets/profile_header.dart';
-import 'package:job_search_app/features/widgets/search_job.dart';
-import 'package:job_search_app/features/widgets/vetical_space.dart';
-import 'package:job_search_app/modals/data/Job.dart';
-import 'package:job_search_app/utils/skeleton_loader.dart';
+import 'package:portail_tn/constants/assets_location.dart';
+import 'package:portail_tn/constants/dimensions.dart';
+import 'package:portail_tn/constants/strings.dart';
+import 'package:portail_tn/features/auth/data/controllers/auth_functions.dart';
+import 'package:portail_tn/features/auth/presentation/screens/profile_screen_seeker.dart';
+import 'package:portail_tn/features/widgets/display_card.dart';
+import 'package:portail_tn/features/widgets/featured_jobs_tile.dart';
+import 'package:portail_tn/features/widgets/horizontal_space.dart';
+import 'package:portail_tn/features/widgets/profile_header.dart';
+import 'package:portail_tn/features/widgets/search_job.dart';
+import 'package:portail_tn/features/widgets/vetical_space.dart';
+import 'package:portail_tn/modals/data/Job.dart';
+import 'package:portail_tn/utils/skeleton_loader.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart'; // Ensure you have GetX package in your pubspec.yaml
 
@@ -210,6 +210,7 @@ class _HomeScreenSeekerState extends State<HomeScreenSeeker> {
       color: Colors.white,
       child: SafeArea(
         child: Scaffold(
+          backgroundColor: Colors.white,
           body: SingleChildScrollView(
             // Wrap the entire content in a SingleChildScrollView
             child: Column(

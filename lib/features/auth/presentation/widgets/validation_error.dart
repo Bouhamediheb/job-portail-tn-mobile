@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:job_search_app/features/widgets/vetical_space.dart';
-import 'package:job_search_app/themes/color_styles.dart';
+import 'package:portail_tn/features/widgets/vetical_space.dart';
+import 'package:portail_tn/themes/color_styles.dart';
 
 class ValidationError extends StatelessWidget {
   const ValidationError({super.key, required this.errorText});

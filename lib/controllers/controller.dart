@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:job_search_app/features/auth/presentation/screens/my_candidats_recruter.dart';
-import 'package:job_search_app/features/auth/presentation/screens/bookmarked_jobs_list.dart';
-import 'package:job_search_app/features/auth/presentation/screens/show_all_jobs.dart';
+import 'package:portail_tn/features/auth/presentation/screens/my_candidats_recruter.dart';
+import 'package:portail_tn/features/auth/presentation/screens/bookmarked_jobs_list.dart';
+import 'package:portail_tn/features/auth/presentation/screens/show_all_jobs.dart';
 
 import '../features/auth/presentation/screens/home_screen_jobseeker.dart';
 import '../features/messages/messages_screen.dart';

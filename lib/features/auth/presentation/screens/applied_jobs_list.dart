@@ -2,14 +2,14 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:job_search_app/constants/dimensions.dart';
-import 'package:job_search_app/constants/named_routes.dart';
-import 'package:job_search_app/controllers/data_controller.dart';
-import 'package:job_search_app/features/auth/presentation/screens/full_page_job.dart';
-import 'package:job_search_app/features/auth/presentation/screens/profile_screen_recruter.dart';
-import 'package:job_search_app/modals/data/Job.dart';
-import 'package:job_search_app/themes/color_styles.dart';
-import 'package:job_search_app/themes/font_styles.dart';
+import 'package:portail_tn/constants/dimensions.dart';
+import 'package:portail_tn/constants/named_routes.dart';
+import 'package:portail_tn/controllers/data_controller.dart';
+import 'package:portail_tn/features/auth/presentation/screens/full_page_job.dart';
+import 'package:portail_tn/features/auth/presentation/screens/profile_screen_recruter.dart';
+import 'package:portail_tn/modals/data/Job.dart';
+import 'package:portail_tn/themes/color_styles.dart';
+import 'package:portail_tn/themes/font_styles.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppliedJobList extends StatefulWidget {
